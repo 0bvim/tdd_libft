@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_lentochar(const char *s, char c)
+int	ft_len_to_char(const char *s, char c)
 {
 	int	i;
 
@@ -31,14 +31,14 @@ unsigned int    count_words(const char *s, char c)
     i = 0;
     while (s[i] != '\0')
     {
-        if (s[i] != c)
+        if (s[i] == c)
         {
-            count++;
-            while (s[i] != c && s[i] != '\0')
-                i++;
-        }
-        else
             i++;
+            continue;
+        }
+        count++;
+        while (s[i] != c && s[i] != '\0')
+        i++;
     }
 
     return (count);
@@ -73,7 +73,7 @@ char	**ft_split(char const *s, char c)
 			s++;
 			continue;
 		}
-		word_size = ft_lentochar(s, c);
+		word_size = ft_len_to_char(s, c);
 		split[i] = ft_calloc(word_size + 1, sizeof(char));
 		ft_strlcpy(split[i], s, word_size + 1);
 		i++;
